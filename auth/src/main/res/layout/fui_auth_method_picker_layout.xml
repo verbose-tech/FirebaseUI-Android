@@ -9,14 +9,38 @@
     android:clipChildren="false"
     android:clipToPadding="false">
 
+
     <ImageView
-        android:id="@+id/logo"
-        style="@style/FirebaseUI.AuthMethodPicker.Logo"
+        android:id="@+id/app_logo"
+        android:layout_width="0dp"
+        android:layout_height="64dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/container"
-        tools:ignore="ContentDescription" /> <!-- TODO remove once the bug is fixed: https://issuetracker.google.com/issues/38281866-->
+        app:srcCompat="@drawable/fui_ic_fb_round" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Viago"
+        android:layout_marginTop="16dp"
+        style="@style/TextAppearance.AppCompat.Display1"
+        app:layout_constraintTop_toBottomOf="@+id/app_logo"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <TextView
+        android:id="@+id/subtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Travel like a boss !!"
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="16dp"/>
 
     <ScrollView
         android:id="@+id/container"
@@ -25,8 +49,8 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.9">
+        app:layout_constraintTop_toBottomOf="@+id/subtitle"
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <LinearLayout
             android:id="@+id/btn_holder"

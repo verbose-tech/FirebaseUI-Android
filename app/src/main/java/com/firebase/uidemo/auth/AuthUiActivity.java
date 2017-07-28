@@ -316,12 +316,10 @@ public class AuthUiActivity extends AppCompatActivity {
     private List<IdpConfig> getSelectedProviders() {
         List<IdpConfig> selectedProviders = new ArrayList<>();
 
-        if (mUseGoogleProvider.isChecked()) {
-            selectedProviders.add(
-                    new IdpConfig.Builder(AuthUI.GOOGLE_PROVIDER)
-                            .setPermissions(getGooglePermissions())
-                            .build());
+        if (mUseEmailProvider.isChecked()) {
+            selectedProviders.add(new IdpConfig.Builder(AuthUI.EMAIL_PROVIDER).build());
         }
+
 
         if (mUseFacebookProvider.isChecked()) {
             selectedProviders.add(
@@ -334,8 +332,11 @@ public class AuthUiActivity extends AppCompatActivity {
             selectedProviders.add(new IdpConfig.Builder(AuthUI.TWITTER_PROVIDER).build());
         }
 
-        if (mUseEmailProvider.isChecked()) {
-            selectedProviders.add(new IdpConfig.Builder(AuthUI.EMAIL_PROVIDER).build());
+        if (mUseGoogleProvider.isChecked()) {
+            selectedProviders.add(
+                    new IdpConfig.Builder(AuthUI.GOOGLE_PROVIDER)
+                            .setPermissions(getGooglePermissions())
+                            .build());
         }
 
         if (mUsePhoneProvider.isChecked()) {

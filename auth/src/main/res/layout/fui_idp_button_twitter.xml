@@ -1,7 +1,11 @@
-<Button
+<ImageButton
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/twitter_button"
-    style="@style/FirebaseUI.Button.AccountChooser.TwitterButton"
-    android:text="@string/fui_sign_in_with_twitter"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:srcCompat="@drawable/fui_ic_twitter_round"
+    android:background="@null"
+    android:layout_margin="4dp"
     tools:ignore="UnusedIds" /> <!-- Used in tests -->

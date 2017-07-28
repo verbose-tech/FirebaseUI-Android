@@ -1,7 +1,11 @@
-<Button
+<ImageButton
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/facebook_button"
-    style="@style/FirebaseUI.Button.AccountChooser.FacebookButton"
-    android:text="@string/fui_sign_in_with_facebook"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:srcCompat="@drawable/fui_ic_fb_round"
+    android:background="@null"
+    android:layout_margin="4dp"
     tools:ignore="UnusedIds" /> <!-- Used in tests -->

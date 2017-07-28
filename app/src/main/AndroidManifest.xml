@@ -17,7 +17,8 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
 
-        <activity android:name=".ChooserActivity">
+        <activity android:name=".auth.AuthUiActivity"
+                  android:label="@string/name_auth_ui" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -27,26 +28,10 @@
                 android:resource="@xml/shortcuts" />
         </activity>
 
-        <!-- Chat demo -->
-        <activity
-            android:name=".database.ChatActivity"
-            android:label="@string/name_chat" />
-        <activity
-            android:name=".database.ChatIndexActivity"
-            android:label="@string/name_chat" />
-
         <!-- Auth UI demo -->
-        <activity
-            android:name=".auth.AuthUiActivity"
-            android:label="@string/name_auth_ui" />
         <activity
             android:name=".auth.SignedInActivity"
             android:label="@string/name_auth_ui" />
-
-        <!-- Storage UI demo-->
-        <activity
-            android:name=".storage.ImageActivity"
-            android:label="@string/name_image" />
 
     </application>
 

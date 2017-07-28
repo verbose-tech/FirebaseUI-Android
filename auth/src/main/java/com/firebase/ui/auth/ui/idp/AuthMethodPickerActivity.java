@@ -19,12 +19,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.annotation.RestrictTo;
-import android.support.constraint.ConstraintLayout;
-import android.support.constraint.ConstraintSet;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.AuthUI.IdpConfig;
@@ -78,21 +78,6 @@ public class AuthMethodPickerActivity extends AppCompatBase implements IdpCallba
         mSaveSmartLock = getAuthHelper().getSaveSmartLockInstance(this);
 
         populateIdpList(getFlowParams().providerInfo);
-
-        int logoId = getFlowParams().logoId;
-        if (logoId == AuthUI.NO_LOGO) {
-            findViewById(R.id.logo).setVisibility(View.GONE);
-
-            ConstraintLayout layout = (ConstraintLayout) findViewById(R.id.root);
-            ConstraintSet constraints = new ConstraintSet();
-            constraints.clone(layout);
-            constraints.setHorizontalBias(R.id.container, 0.5f);
-            constraints.setVerticalBias(R.id.container, 0.5f);
-            constraints.applyTo(layout);
-        } else {
-            ImageView logo = (ImageView) findViewById(R.id.logo);
-            logo.setImageResource(logoId);
-        }
     }
 
     private void populateIdpList(List<IdpConfig> providers) {
@@ -122,9 +107,11 @@ public class AuthMethodPickerActivity extends AppCompatBase implements IdpCallba
         }
 
         ViewGroup btnHolder = (ViewGroup) findViewById(R.id.btn_holder);
-        for (final Provider provider : mProviders) {
-            View loginButton = getLayoutInflater()
-                    .inflate(provider.getButtonLayout(), btnHolder, false);
+        LinearLayout linearLayout = null;
+        int noOfProviders = mProviders.size();
+        for (int i = 0; i < noOfProviders; i++) {
+            final Provider provider = mProviders.get(i);
+            View loginButton = getLayoutInflater().inflate(provider.getButtonLayout(), btnHolder, false);
 
             loginButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -138,7 +125,24 @@ public class AuthMethodPickerActivity extends AppCompatBase implements IdpCallba
             if (provider instanceof IdpProvider) {
                 ((IdpProvider) provider).setAuthenticationCallback(this);
             }
-            btnHolder.addView(loginButton);
+            if (i == 0) {
+                btnHolder.addView(loginButton);
+                if (noOfProviders > 1) {
+                    TextView textView = new TextView(this);
+                    textView.setGravity(Gravity.CENTER_HORIZONTAL);
+                    textView.setText("Or Continue with");
+                    textView.setPadding(0, 16, 0, 16);
+                    btnHolder.addView(textView);
+                }
+            } else {
+                if (linearLayout == null) {
+                    linearLayout = new LinearLayout(this);
+                    linearLayout.setOrientation(LinearLayout.HORIZONTAL);
+                    linearLayout.setGravity(Gravity.CENTER_HORIZONTAL);
+                    btnHolder.addView(linearLayout);
+                }
+                linearLayout.addView(loginButton);
+            }
         }
     }
 
